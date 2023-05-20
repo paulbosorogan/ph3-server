@@ -31,6 +31,18 @@ class ApplicationController < Sinatra::Base
     end
 
     #POST 
+    post '/books' do 
+      new_book = Book.create(
+        title: params[:title],
+        author: params[:author],
+        genre: params[:genre],
+        description: params[:description],
+        image_url: params[:image_url]
+      )
+      new_book.to_json
+    end 
+
+
     post '/reviews' do 
       new_review = Review.create(
         score: params[:score],
