@@ -1,35 +1,19 @@
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
-  # Add your routes here
-  get "/" do
-    { message: "Good luck with your project!" }.to_json
-  end
     #GET
     get "/" do
       { message: "Good luck with your project!" }.to_json
     end
 
     get '/books' do 
-      books = Book.all.order(:title).limit(10)
-      books.to_json
+      books = Book.all
+      books.to_json(
+        include: :reviews
+      )
     end
 
-    get '/books/:id' do 
-      book = Book.find(params[:id])
-      book.to_json( include: { reviews: { include: :user}})
-    end
-
-    get '/reviews' do 
-      reviews = Review.all
-      reviews.to_json
-    end 
-
-    get '/reviews/best_score' do 
-      best_score = Review.best_score
-      best_score.to_json
-    end
-
+  
     #POST 
     post '/books' do 
       new_book = Book.create(
@@ -47,13 +31,12 @@ class ApplicationController < Sinatra::Base
       new_review = Review.create(
         score: params[:score],
         comment: params[:comment],
-        book_id: params[:book_id]
       )
       new_review.to_json
     end 
 
     #PATCH 
-    patch 'books/:id' do 
+    patch '/books/:id' do 
       update_book = Book.find(params[:id])
       update_book.update(
         title: params[:title],
@@ -63,4 +46,13 @@ class ApplicationController < Sinatra::Base
       )
       update_book.to_json
     end 
+
+
+    #DELETE
+
+    delete '/books' do 
+      deleted_book.destroy
+    end
 end
+#full crud on review
+#destroy dependency (if deleting a book -> destroy reviews)
