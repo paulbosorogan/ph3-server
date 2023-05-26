@@ -4,7 +4,6 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :score 
       t.string :comment 
       t.integer :book_id #foreign key
-      t.timestamps
     end
   end
 end
