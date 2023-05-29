@@ -1,25 +1,27 @@
-# Phase 3 Project - 'in my reader's opinion' 
+# Phase 3 Project Server-Side - 'in my reader's opinion' 
 This is a book review SPA. The user is able to upload books and review them.
 
 ## Requirements to install and run this program.
-ph3-client frontend - React application (link provided below)
-Ruby
 Access to a terminal.
 Internet browser.
 
 # Application instructions
 Navigate to the directory from your terminal and git copy the repo from GitHub.
 Open the file (code .)
-Run the command buldle install in the terminal to install all dependencies.
+Run the command `buldle install` in the terminal to install all dependencies.
 
 ## 
-This SPA is meant to work alongside this front-end React application -> https://github.com/paulbosorogan/ph3-client
+This SPA is meant to work alongside this front-end React application. For information and instructions press [here](https://github.com/paulbosorogan/ph3-client)
 Please follow along the instructions from the link provided below in order to have the React App running. 
 ## 
 
 Please run `rake server` in your terminal to start the server. You may open http://localhost:9292/books in your browser to see the data. 
 
-## Sinatra 
+# Controllers - Models
+- book.rb (has_many :reviews assosiation)
+- review. rb (belongs_to :book association)
+
+# Controllers - Application Controllers 
 - GET
 - POST 
 - PATCH
