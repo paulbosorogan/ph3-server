@@ -36,6 +36,5 @@ Please run `rake server` in your terminal to start the server. You may open http
 - ActiveRecord associatoins: https://guides.rubyonrails.org/association_basics.html
 - Faker gem used to seed data: https://github.com/faker-ruby/faker
 - Images from https://www.freepik.com/ uploaded on my profile of https://imgur.com
-- CSS Properties https://www.w3schools.com/css/default.asp
 - Youtube videos https://www.youtube.com/watch?v=TH0Amh9fHt4
 - Medium blogs https://dev.to/sampurna/creating-responsive-navbar-using-react-bootstrap-5ajg
