@@ -15,13 +15,10 @@ ActiveRecord::Schema.define(version: 2023_05_20_144110) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "genre"
-    t.string "description"
-    t.string "image_url"
+    t.string "image"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "score"
     t.string "comment"
     t.integer "book_id"
   end
