@@ -9,14 +9,7 @@ class ApplicationController < Sinatra::Base
     get '/books' do 
       books = Book.all
       books.to_json(
-        include: :reviews
-      )
-    end
-
-    get '/books/:id' do 
-      individual_book = Book.find(params[:id])
-      individual_book.to_json(
-        include: :reviews
+        include: :notes
       )
     end
 
@@ -26,20 +19,29 @@ class ApplicationController < Sinatra::Base
       new_book = Book.create(
         title: params[:title],
         author: params[:author],
-        image: params[:image]
+        image: params[:image],
+        genre: params[:genre],
       )
       new_book.to_json(
-        include: :reviews
+        include: :notes
       )
     end 
 
+    post '/books/:book_id/notes' do 
+      new_note = Note.create(
+        comment: params[:comment],
+        book: Book.find(params[:book_id])
+      )
+      new_note.to_json
+    end
 
-    patch "/reviews/:id" do 
-      up_review = Review.find(params[:id])
-      up_review.update(
+
+    patch "/notes/:id" do 
+      update_note = Note.find(params[:id])
+      update_note.update(
         comment: params[:comment]
       )
-    up_review.to_json
+    update_note.to_json
     end
 
 
@@ -49,6 +51,12 @@ class ApplicationController < Sinatra::Base
       deleted_book = Book.find(params[:id])
       deleted_book.destroy
       deleted_book.to_json
+    end
+
+    delete '/notes/:id' do 
+      deleted_note = Note.find(params[:id])
+      deleted_note.destroy
+      deleted_note.to_json
     end
 end
 #full crud on review
